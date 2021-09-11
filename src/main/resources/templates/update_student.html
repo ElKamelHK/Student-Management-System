@@ -1,13 +1,20 @@
 <!DOCTYPE html>
-<html xmlns:th="www.thymeleaf.org">
+<html xhtml:hr="www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Student Management System</title>
+<title th:object="${student}" th:text=" ${'Update Student :'+ student.firstName}"></title>
+
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
+
+
+
 </head>
 <body>
 	<nav class="navbar navbar-dark bg-dark">
@@ -15,16 +22,16 @@
 			data-target="#navbarTogglerDemo01"
 			aria-controls="navbarTogglerDemo01" aria-expanded="false"
 			aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span> <span>Student
-				Management System</span>
+			<span class="navbar-toggler-icon"></span>
+			<span>Student Management System</span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-
+			
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-				<li class="nav-item active"><a class="nav-link"
+				<li class="nav-item "><a class="nav-link"
 					th:href="@{/api/student/all}">Students List <span
 						class="sr-only">(current)</span></a></li>
-				<li class="nav-item "><a class="nav-link"
+				<li class="nav-item active"><a class="nav-link"
 					th:href="@{/api/student/new}">Student Management</a></li>
 
 			</ul>
@@ -32,40 +39,46 @@
 		</div>
 	</nav>
 
-	<div class="container">
-		<div class="row">
-			<h1>List Students</h1>
-		</div>
-		<div class="row">
-			<div class="col-lg-3">
-				<a th:href="@{/api/student/new}" class="btn btn-primary btn-sm mb-3">Add
-					Student</a>
+	<div class="row">
+		<div
+			class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card w-75">
+			<h1 class="text-center">Update Student</h1>
+			<div class="card-body">
+				<form th:action="@{/api/student/update}" th:object="${student}"
+					method="POST">
+					<div class="form-group">
+						<input type="hidden" name="id"
+							th:field="*{id}" class="form-control"
+							 />
+					</div>
+					<div class="form-group">
+						<label>First Name : </label> <input type="text" name="firstName"
+							th:field="*{firstName}" class="form-control"
+							palceholder="Entre Student first Name" />
+					</div>
+
+					<div class="form-group">
+						<label>Last Name : </label> <input type="text" name="lastName"
+							th:field="*{lastName}" class="form-control"
+							palceholder="Entre Student last Name" />
+					</div>
+
+					<div class="form-group">
+						<label>Email : </label> <input type="text" name="email"
+							th:field="*{email}" class="form-control"
+							palceholder="Entre Student email" />
+					</div>
+
+					<div class="box-footer">
+						<button type="submit" class="btn btn-primary">Update</button>
+					</div>
+
+				</form>
 			</div>
 		</div>
-		<table class="table">
-			<thead class="thead-light">
-				<tr>
-					<th scope="col">Student Firstname</th>
-					<th scope="col">Student Lastname</th>
-					<th scope="col">Student Email</th>
-					<th scope="col">Actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="student: ${students}">
-					<td th:text="${student.firstName}"></td>
-					<td th:text="${student.lastName}"></td>
-					<td th:text="${student.email}"></td>
-					<td>
-						<a th:href="@{/api/student/update/{id}(id=${student.id})}" class="btn btn-info">Update</a>
-						<a  th:href="@{/api/student/delete/{id}(id=${student.id})}" class="btn btn-dark">Delete</button>
-					</td>
-				</tr>
-
-			</tbody>
-		</table>
-
 	</div>
+	</div>
+
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -80,5 +93,6 @@
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
 		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 		crossorigin="anonymous"></script>
+
 </body>
 </html>

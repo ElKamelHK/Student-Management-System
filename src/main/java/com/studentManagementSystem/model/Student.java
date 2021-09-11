@@ -30,6 +30,10 @@ public class Student {
 	private String lastName;
 	@Column(name="email",nullable = false,unique = true)
 	private String email;
+	@Override
+	public String toString() {
+		return "Student [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + "]";
+	}
 	
 
 }
