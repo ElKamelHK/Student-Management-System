@@ -2,7 +2,8 @@
 <html xhtml:hr="www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title th:object="${student}" th:text=" ${'Update Student :'+ student.firstName}"></title>
+<title th:object="${student}"
+	th:text=" ${'Update Student :'+ student.firstName}"></title>
 
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -22,11 +23,11 @@
 			data-target="#navbarTogglerDemo01"
 			aria-controls="navbarTogglerDemo01" aria-expanded="false"
 			aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-			<span>Student Management System</span>
+			<span class="navbar-toggler-icon"></span> <span>Student
+				Management System</span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-			
+
 			<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 				<li class="nav-item "><a class="nav-link"
 					th:href="@{/api/student/all}">Students List <span
@@ -47,9 +48,8 @@
 				<form th:action="@{/api/student/update}" th:object="${student}"
 					method="POST">
 					<div class="form-group">
-						<input type="hidden" name="id"
-							th:field="*{id}" class="form-control"
-							 />
+						<input type="hidden" name="id" th:field="*{id}"
+							class="form-control" />
 					</div>
 					<div class="form-group">
 						<label>First Name : </label> <input type="text" name="firstName"
@@ -74,6 +74,12 @@
 					</div>
 
 				</form>
+				<div th:if="${message}" th:text="${message}"
+					th:class="${'alert ' + alertClass}" />
+ 
+				
+					<meta http-equiv="refresh" th:if="${message}"
+						content="2.5;url=/api/student/all">
 			</div>
 		</div>
 	</div>
