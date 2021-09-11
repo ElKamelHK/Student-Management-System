@@ -6,4 +6,6 @@ import com.studentManagementSystem.model.Student;
 
 public interface StudentService {
 List<Student> getAllStudents();
+
+Student saveStudent(Student student);
 }
